@@ -5,6 +5,7 @@
 ;; URL: https://github.com/erickgnavar/tree-sitter-ispell.el
 ;; Version: 0.1.0
 ;; SPDX-License-Identifier: GNU General Public License v3.0 or later
+;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 
 ;;; Commentary:
 ;; Run spell check against tree-sitter text nodes
