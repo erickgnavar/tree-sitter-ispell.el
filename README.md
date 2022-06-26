@@ -14,6 +14,16 @@ Clone this repo somewhere, and add this to your config:
 (require 'tree-sitter-ispell)
 ```
 
+### Using straight.el
+
+```emacs-lisp
+(use-package tree-sitter-ispell
+  :straight (tree-sitter-ispell
+             :type git
+             :host github
+             :repo "erickgnavar/tree-sitter-ispell.el"))
+```
+
 ## Usage
 
 `M-x tree-sitter-ispell-run-at-point` to use the node at the current position
