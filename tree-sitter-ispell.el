@@ -13,6 +13,8 @@
 ;;; Code:
 
 (require 'tree-sitter)
+(require 'seq)
+(require 'cl-lib)
 
 ;TODO: Add more languages, inspect their grammars and define their text elements
 (defcustom tree-sitter-ispell-grammar-text-mapping '((python-mode . (string comment))
@@ -27,7 +29,7 @@
   "Get text node at point using predefined major mode options."
   (let* ((types (alist-get major-mode tree-sitter-ispell-grammar-text-mapping))
          (matches (seq-map (lambda (x) (tree-sitter-node-at-pos x (point) t)) types))
-         (filtered-matches (remove-if (lambda (x) (eq nil x)) matches)))
+         (filtered-matches (cl-remove-if (lambda (x) (eq nil x)) matches)))
     (if filtered-matches
         (car filtered-matches))))
 
