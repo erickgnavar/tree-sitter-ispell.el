@@ -23,6 +23,9 @@
                                                      (json-mode . (string string_content comment))
                                                      (ruby-mode . (string string_content comment))
                                                      (sh-mode . (string comment))
+                                                     (c-mode . (string_literal comment))
+                                                     (c++-mode . (string_literal comment))
+                                                     (css-mode . (string_value comment))
                                                      (elixir-mode . (string comment)))
   "All the supported text elements for each grammar."
   :type 'list
