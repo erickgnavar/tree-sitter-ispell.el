@@ -19,14 +19,12 @@
                                                      (go-mode . (interpreted_string_literal comment))
                                                      (js-mode . (string template_string comment))
                                                      (elixir-mode . (string comment)))
-  "Mapping of tree-sitter grammars, define all the text elements by language
- used to select a text node where run ispell"
+  "All the supported text elements for each grammar."
   :type 'list
   :group 'tree-sitter-ispell)
 
 (defun tree-sitter-ispell--get-text-node-at-point ()
-  "Get valid node for the current major mode using `tree-sitter-ispell-grammar-text-mapping'
-list of elements."
+  "Get text node at point using predefined major mode options."
   (let* ((types (alist-get major-mode tree-sitter-ispell-grammar-text-mapping))
          (matches (seq-map (lambda (x) (tree-sitter-node-at-pos x (point) t)) types))
          (filtered-matches (remove-if (lambda (x) (eq nil x)) matches)))
@@ -34,7 +32,7 @@ list of elements."
         (car filtered-matches))))
 
 (defun tree-sitter-ispell--run-ispell-on-node (node)
-  "Run ispell over the text of the received `node'"
+  "Run ispell over the text of the received `NODE'."
   (ispell-region (tsc-node-start-position node) (tsc-node-end-position node)))
 
 ;;;###autoload
