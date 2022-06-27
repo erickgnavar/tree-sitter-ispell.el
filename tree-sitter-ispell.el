@@ -33,11 +33,8 @@
 
 (defun tree-sitter-ispell--get-text-node-at-point ()
   "Get text node at point using predefined major mode options."
-  (let* ((types (alist-get major-mode tree-sitter-ispell-grammar-text-mapping))
-         (matches (seq-map (lambda (x) (tree-sitter-node-at-pos x (point) t)) types))
-         (filtered-matches (cl-remove-if (lambda (x) (eq nil x)) matches)))
-    (if filtered-matches
-        (car filtered-matches))))
+  (let ((types (alist-get major-mode tree-sitter-ispell-grammar-text-mapping)))
+    (seq-some (lambda (x) (tree-sitter-node-at-pos x (point) t)) types)))
 
 (defun tree-sitter-ispell--run-ispell-on-node (node)
   "Run ispell over the text of the received `NODE'."
@@ -47,9 +44,8 @@
 (defun tree-sitter-ispell-run-at-point ()
   "Run ispell at current point if there is a text node."
   (interactive)
-  (let ((node (tree-sitter-ispell--get-text-node-at-point)))
-    (if node
-        (tree-sitter-ispell--run-ispell-on-node node))))
+  (when-let ((node (tree-sitter-ispell--get-text-node-at-point)))
+    (tree-sitter-ispell--run-ispell-on-node node)))
 
 (provide 'tree-sitter-ispell)
 
