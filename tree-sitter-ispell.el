@@ -20,6 +20,9 @@
 (defcustom tree-sitter-ispell-grammar-text-mapping '((python-mode . (string comment))
                                                      (go-mode . (interpreted_string_literal comment))
                                                      (js-mode . (string template_string comment))
+                                                     (json-mode . (string string_content comment))
+                                                     (ruby-mode . (string string_content comment))
+                                                     (sh-mode . (string comment))
                                                      (elixir-mode . (string comment)))
   "All the supported text elements for each grammar."
   :type 'list
