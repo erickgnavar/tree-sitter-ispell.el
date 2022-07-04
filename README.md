@@ -1,5 +1,7 @@
 # tree-sitter-ispell.el
 
+[![MELPA](https://melpa.org/packages/tree-sitter-ispell-badge.svg)](https://melpa.org/#/tree-sitter-ispell)
+
 Run ispell on tree-sitter text nodes
 
 ## Installation
@@ -22,6 +24,13 @@ Clone this repo somewhere, and add this to your config:
              :type git
              :host github
              :repo "erickgnavar/tree-sitter-ispell.el"))
+```
+
+### Using use-package
+
+```emacs-lisp
+(use-package tree-sitter-ispell
+  :ensure t)
 ```
 
 ## Usage
