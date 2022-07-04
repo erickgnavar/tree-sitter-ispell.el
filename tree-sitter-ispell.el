@@ -16,7 +16,7 @@
 (require 'seq)
 (require 'cl-lib)
 
-;TODO: Add more languages, inspect their grammars and define their text elements
+;;TODO: Add more languages, inspect their grammars and define their text elements
 (defcustom tree-sitter-ispell-grammar-text-mapping '((python-mode . (string comment))
                                                      (go-mode . (interpreted_string_literal comment))
                                                      (js-mode . (string template_string comment))
