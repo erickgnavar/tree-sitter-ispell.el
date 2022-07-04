@@ -28,7 +28,7 @@
                                                      (css-mode . (string_value comment))
                                                      (elixir-mode . (string comment)))
   "All the supported text elements for each grammar."
-  :type 'list
+  :type '(alist :key-type symbol :value-type sexp)
   :group 'tree-sitter-ispell)
 
 (defun tree-sitter-ispell--get-text-node-at-point ()
