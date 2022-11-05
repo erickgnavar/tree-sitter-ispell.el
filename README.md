@@ -42,3 +42,5 @@ It can also be attached to a keybinding, for example:
 ```emacs-lisp
 (global-set-key (kbd "C-x C-s") 'tree-sitter-ispell-run-at-point)
 ```
+
+`M-x tree-sitter-ispell-run-buffer` to run `ispell` for every text node in the current buffer.
