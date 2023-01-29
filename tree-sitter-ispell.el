@@ -42,10 +42,7 @@
 
 (defun tree-sitter-ispell--convert-patterns-for-capture (raw-patterns)
   "Convert `RAW-PATTERNS' to capture format."
-  (thread-last
-    raw-patterns
-    (seq-map (lambda (raw) (format "(%s) @%s" raw raw)))
-    (mapconcat 'identity)))
+  (mapconcat 'identity (seq-map (lambda (raw) (format "(%s) @%s" raw raw)) raw-patterns)))
 
 ;;;###autoload
 (defun tree-sitter-ispell-run-at-point ()
