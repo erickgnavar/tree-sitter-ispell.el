@@ -20,6 +20,8 @@
 (defcustom tree-sitter-ispell-grammar-text-mapping '((python-mode . (string comment))
                                                      (go-mode . (interpreted_string_literal comment))
                                                      (markdown-mode . (text))
+                                                     (clojure-mode . (str_lit comment))
+                                                     (sh-mode . (comment string))
                                                      (js-mode . (string template_string comment))
                                                      (json-mode . (string string_content comment))
                                                      (ruby-mode . (string string_content comment))
