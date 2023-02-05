@@ -19,6 +19,7 @@
 ;;TODO: Add more languages, inspect their grammars and define their text elements
 (defcustom tree-sitter-ispell-grammar-text-mapping '((python-mode . (string comment))
                                                      (go-mode . (interpreted_string_literal comment))
+                                                     (rust-mode . (string_literal line_comment))
                                                      (markdown-mode . (text))
                                                      (clojure-mode . (str_lit comment))
                                                      (sh-mode . (comment string))
