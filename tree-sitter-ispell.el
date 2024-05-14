@@ -18,6 +18,7 @@
 
 ;;TODO: Add more languages, inspect their grammars and define their text elements
 (defcustom tree-sitter-ispell-grammar-text-mapping '((python-mode . (string comment))
+                                                     (python-ts-mode . (string_content comment))
                                                      (go-mode . (interpreted_string_literal comment))
                                                      (rust-mode . (string_literal line_comment))
                                                      (markdown-mode . (text))
@@ -30,19 +31,33 @@
                                                      (c-mode . (string_literal comment))
                                                      (c++-mode . (string_literal comment))
                                                      (css-mode . (string_value comment))
+                                                     (elixir-ts-mode . (quoted_content comment))
                                                      (elixir-mode . (string comment)))
   "All the supported text elements for each grammar."
   :type '(alist :key-type symbol :value-type sexp)
   :group 'tree-sitter-ispell)
 
+(defun tree-sitter-ispell--treesit-available-p ()
+  "Check if treesit is available and if there is a grammar loaded already."
+  (and (fboundp 'treesit-available-p) (treesit-available-p) (treesit-language-at (point))))
+
 (defun tree-sitter-ispell--get-text-node-at-point ()
   "Get text node at point using predefined major mode options."
   (let ((types (alist-get major-mode tree-sitter-ispell-grammar-text-mapping)))
-    (seq-some (lambda (x) (tree-sitter-node-at-pos x (point) t)) types)))
+    (seq-some (lambda (x)
+                (if (tree-sitter-ispell--treesit-available-p)
+                    (let* ((lang (treesit-language-at (point)))
+                           (node (treesit-node-at (point) lang))
+                           (query (treesit-query-compile lang (format  "((%s) @%s)" x x)))
+                           (capture (treesit-query-capture node query)))
+                      (and capture node))
+                  (tree-sitter-node-at-pos x (point) t))) types)))
 
 (defun tree-sitter-ispell--run-ispell-on-node (node)
   "Run ispell over the text of the received `NODE'."
-  (ispell-region (tsc-node-start-position node) (tsc-node-end-position node)))
+  (if (tree-sitter-ispell--treesit-available-p)
+      (ispell-region (treesit-node-start node) (treesit-node-end node))
+    (ispell-region (tsc-node-start-position node) (tsc-node-end-position node))))
 
 (defun tree-sitter-ispell--convert-patterns-for-capture (raw-patterns)
   "Convert `RAW-PATTERNS' to capture format."
