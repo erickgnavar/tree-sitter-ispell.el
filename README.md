@@ -2,7 +2,7 @@
 
 [![MELPA](https://melpa.org/packages/tree-sitter-ispell-badge.svg)](https://melpa.org/#/tree-sitter-ispell)
 
-Run ispell on tree-sitter text nodes
+Run ispell on tree-sitter text nodes, this works using `tree-sitter` package and `treesit` builtin package as well.
 
 ## Installation
 
