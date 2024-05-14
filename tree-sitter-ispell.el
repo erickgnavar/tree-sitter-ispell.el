@@ -1,4 +1,4 @@
-;;; tree-sitter-ispell.el --- Run ispell on tree-sitter text nodes
+;;; tree-sitter-ispell.el --- Run ispell on tree-sitter text nodes -*- lexical-binding: t -*-
 
 ;; Copyright © 2022 Erick Navarro
 ;; Author: Erick Navarro <erick@navarro.io>
