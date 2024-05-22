@@ -22,6 +22,7 @@
                                                      (go-mode . (interpreted_string_literal comment))
                                                      (rust-mode . (string_literal line_comment))
                                                      (markdown-mode . (text))
+                                                     (dockerfile-ts-mode . (comment))
                                                      (clojure-mode . (str_lit comment))
                                                      (sh-mode . (comment string))
                                                      (js-mode . (string template_string comment))
